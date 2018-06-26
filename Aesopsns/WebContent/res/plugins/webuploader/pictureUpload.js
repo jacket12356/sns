@@ -81,7 +81,7 @@ jQuery(function() {
         // swf文件路径
         swf: basePath+"/res/plugins/webuploader/Uploader.swf",
         // 文件接收服务端。
-        server: basePath+"/member/picture/uploadPic/"+albumId,
+        server: basePath+"/album/uploadpic/"+albumId,
         fileNumLimit: 30,
         fileSizeLimit: 5 * 1024 * 1024,    // 200 M
         fileSingleSizeLimit: 1 * 1024 * 1024    // 50 M
@@ -325,7 +325,7 @@ jQuery(function() {
                 if ( stats.successNum ) {
                     $upload.hide();
                     setTimeout(function () {
-                        parent.window.location.href = basePath + "/member/picture/list/"+memberId + "-" + albumId;
+                        parent.window.location.href = basePath + "/album/detail/" + albumId;
                     },2000);
                 } else {
                     // 没有成功的图片，重设

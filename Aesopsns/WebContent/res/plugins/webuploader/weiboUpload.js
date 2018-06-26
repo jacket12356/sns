@@ -4,8 +4,9 @@ jQuery(function() {
         $wrap = $('#picUploader'),
 
         // 图片容器
-        $queue = $('<ul class="filelist"></ul>')
-            .appendTo( $wrap.find('.queueList') ),
+       // $queue = $('<ul class="filelist"></ul>')
+       //     .appendTo( $wrap.find('.queueList') ),
+        $queue = $('#myfilelist'),
 
         // 状态栏，包括进度和控制按钮
         $statusBar = $wrap.find('.statusBar'),
@@ -79,9 +80,9 @@ jQuery(function() {
 
         chunked: true,
         // swf文件路径
-        swf: basePath+"/res/plugins/webuploader/Uploader.swf",
+        swf: basePath+"/Aesopsns/res/plugins/webuploader/Uploader.swf",
         // 文件接收服务端。
-        server: basePath+"/weiboUploadImage",
+        server: basePath+"/Aesopsns/weibo/uploadimage",
         fileNumLimit: 9,
         fileSizeLimit: 5 * 1024 * 1024,    // 200 M
         fileSingleSizeLimit: 1 * 1024 * 1024    // 50 M

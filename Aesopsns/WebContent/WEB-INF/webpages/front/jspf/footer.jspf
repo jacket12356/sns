@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<div class="footer" id = "deletefooterwhenfullscreen">
+    <div class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="text-center">
+                        AESOPSNS
+                    </div>
+                    <div class="text-center">
+                        <strong>Powered By <a href="#" target="_blank">AESOPSNS</a> Copyright © 2018 —— </strong>
+                        <script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "https://hm.baidu.com/hm.js?6e47fd0326365727a8e2ed62d5935c88";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

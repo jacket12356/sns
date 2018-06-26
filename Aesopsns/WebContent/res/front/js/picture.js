@@ -87,17 +87,17 @@ var picture = {
 
         function list() {
             $.ajax({
-                url: basePath + '/picture/indexData',
+                url: basePath + '/gallery/indexdata',
                 type: "get",
                 data: {pageNo: pageNo},
                 cache: false,
                 dataType: "json",
                 timeout: 20000,
-                success: function (res) {
+                success: function (data) {
                     var html = "";
-                    if (res.data.length > 0) {
-                        for (var i = 0; i < res.data.length; i++) {
-                            var picture = res.data[i];
+                    if (data.length > 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            var picture = data[i];
                             var zan = "<a class=\"text-primary picture-favor\" data-id=\""+picture.pictureId+"\">";
                             if (picture.isFavor == 0){
                                 zan += "<i class=\"icon-thumbs-o-up\"></i> ";
@@ -105,9 +105,9 @@ var picture = {
                                 zan += "<i class=\"icon-thumbs-up\"></i> ";
                             }
                             zan += picture.favorCount+"</a>";
-                            html += "<li class=\"item\"><a href=\""+basePath+"/picture/detail/"+picture.pictureId+"\" class=\"picture\" target=\"_jeesnsOpen\" title=\"\" height=\"680px\" width=\"1200px\"><img src=\""+basePath + picture.path + "\"></a>" +
-                                "<p class=\"description\">" + picture.description + "</p><div class=\"qianm clearfloat\"><span class=\"sp1\"><a href='"+basePath+"/u/"+picture.member.id+"' target='_blank'>" +picture.member.name+"</a><b>"+zan+"</b></span>" +
-                                "<span class=\"sp2\">" + picture.createTime + "</span></div></li>";
+                            html += "<li class=\"item\"><a href=\""+basePath+"/album/picturedetail/"+picture.pictureId+"\" class=\"picture\" target=\"_jeesnsOpen\" title=\"\" height=\"680px\" width=\"1200px\"><img src=\""+basePath + "/res/common/uploads/albumimage/" + picture.path + "\"></a>" +
+                                "<p class=\"description\"></p><div class=\"qianm clearfloat\"><span class=\"sp1\"><a href='"+basePath+"/user/others/"+picture.username+"' target='_blank'>" +picture.username+"</a><b>"+zan+"</b></span>" +
+                                "<span class=\"sp2\">" + picture.createdTime + "</span></div></li>";
                         }
                         $(html).find('img').each(function (index) {
                             loadImage($(this).attr('src'));
@@ -134,13 +134,13 @@ var picture = {
         function favor(_this) {
             var pictureId = _this.attr("data-id");
             $.ajax({
-                url: basePath + "/picture/favor/" + pictureId,
+                url: basePath + "/album/picturefavor/" + pictureId,
                 type: "get",
                 dataType: "json",
                 timeout: 5000,
                 success: function (res) {
                     if (res.code < 0) {
-                        jeesnsDialog.errorTips(res.message);
+                        jeesnsDialog.errorTips(res.msg);
                     } else {
                         if (res.code == 0) {
                             _this.html("<i class='icon icon-thumbs-up'></i> " + res.data);
@@ -180,12 +180,12 @@ var picture = {
                 if(res.code==0){
                     $("#content").val("");
                     $(":submit").removeAttr("disabled");
-                    jeesnsDialog.successTips(res.message);
+                    jeesnsDialog.successTips(res.msg);
                     pageNo = 1;
                     picture.commentList();
                 }else{
                     $(":submit").removeAttr("disabled");
-                    jeesnsDialog.errorTips(res.message);
+                    jeesnsDialog.errorTips(res.msg);
                 }
             }
         };
@@ -194,36 +194,31 @@ var picture = {
     },
     commentList: function () {
         $.ajax({
-            url: basePath + "/picture/commentList/" + pictureId + ".json?pageNo=" + pageNo,
+            url: basePath + "/album/picturecommentlist/" + pictureId,
             type: "get",
             dataType: "json",
-            success: function (json) {
-                loading = false;
-                var data = json.data;
+            success: function (data) {
+//                loading = false;
+//                var data = json.data;
                 if (data.length > 0){
                     var html = "";
                     for (var i = 0; i < data.length; i++) {
                         html += "<div class=\"comment\">" +
-                            "<a href=\"" + basePath + "/u/" + data[i].member.id + "\" class=\"avatar\" target='_blank'>" +
-                            "<img src=\"" + basePath + data[i].member.avatar + "\" class=\"icon-4x\"></a>" +
+                            "<a href=\"" + basePath + "/user/others/" + data[i].member.name + "\" class=\"avatar\" target='_blank'>" +
+                            "<img src=\"" + basePath + "/res/common/" + data[i].member.icon + "\" class=\"icon-4x\"></a>" +
                             "<div class=\"content\">" +
-                            "<div class=\"pull-right text-muted\">" + data[i].createTime + "</div>" +
-                            "<div><a href=\"" + basePath + "/u/" + data[i].member.id + "\" target='_blank'><strong>" + data[i].member.name + "</strong></a></div>" +
+                            "<div class=\"pull-right text-muted\">" + data[i].createdtime + "</div>" +
+                            "<div><a href=\"" + basePath + "/user/others/" + data[i].member.name + "\" target='_blank'><strong>" + data[i].member.name + "</strong></a></div>" +
                             "<div class=\"text\">"+data[i].content+"</div></div></div>";
                     }
-                    pageNo = json.page.pageNo;
-                    if (json.page.totalPage <= pageNo) {
-                        $(".more-comment").html("全部加载完了");
-                        loading = true;
-                    }else {
-                        $(".more-comment").html("加载中...");
-                    }
-                    if (pageNo == 1){
-                        $(".comment-list").html("");
-                    }
+//                    pageNo = json.page.pageNo;
+//                    if (json.page.totalPage <= pageNo) {
+//                        $(".more-comment").html("全部加载完了");
+//                        loading = true;
+//                    }else {
+//                        $(".more-comment").html("加载中...");
+//                    }
                     $(".comment-list").append(html);
-                }else {
-                    $(".more-comment").html("暂无评论");
                 }
             }
         });
@@ -231,13 +226,13 @@ var picture = {
     favor: function (_this) {
         var pictureId = _this.attr("data-id");
         $.ajax({
-            url: basePath + "/picture/favor/" + pictureId,
+            url: basePath + "/album/picturefavor/" + pictureId,
             type: "get",
             dataType: "json",
             timeout: 5000,
             success: function (res) {
                 if (res.code < 0) {
-                    jeesnsDialog.errorTips(res.message);
+                    jeesnsDialog.errorTips(res.msg);
                 } else {
                     if (res.code == 0) {
                         _this.html("<i class='icon icon-thumbs-up'></i> " + res.data);

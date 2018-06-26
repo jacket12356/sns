@@ -2,13 +2,13 @@ var weibo = {
     favor: function (_this, basePath) {
         var weiboId = _this.attr("weibo-id");
         $.ajax({
-            url: basePath + "/weibo/favor/" + weiboId,
+            url: basePath + "/Aesopsns/weibo/favor/" + weiboId,
             type: "get",
             dataType: "json",
             timeout: 5000,
             success: function (res) {
                 if (res.code < 0) {
-                    jeesnsDialog.errorTips(res.message);
+                    jeesnsDialog.errorTips(res.msg);
                 } else {
                     if (res.code == 0) {
                         _this.html("<i class='icon icon-thumbs-up'></i> " + res.data);
@@ -25,39 +25,39 @@ var weibo = {
     },
     commentList: function (weiboId, pageNo) {
         $.ajax({
-            url: basePath + "/weibo/commentList/" + weiboId + ".json?pageNo=" + pageNo,
+            url: basePath + "/Aesopsns/weibo/commentList/" + weiboId,
             type: "get",
             dataType: "json",
-            success: function (json) {
-                var data = json.data;
+            success: function (data) {
                 var html = "";
                 for (var i = 0; i < data.length; i++) {
                     html += "<div class=\"comment\">" +
-                        "<a href=\"" + basePath + "/u/" + data[i].member.id + "\" class=\"avatar\">" +
-                        "<img src=\"" + basePath + data[i].member.avatar + "\" class=\"icon-4x\"></a><div class=\"content\">" +
-                        "<div class=\"pull-right text-muted\">" + data[i].createTime + "</div><div>" +
-                        "<a href=\"" + basePath + "/u/" + data[i].member.id + "\"><strong>" + data[i].member.name + "</strong></a></div>" +
+                        "<a href=\"" + basePath + "/Aesopsns/user/others/" + data[i].member.name + "\" class=\"avatar\">" +
+                        "<img src=\"" + basePath + "/Aesopsns/res/common/uploads/" + data[i].member.icon + "\" class=\"icon-4x\"></a><div class=\"content\">" +
+                        "<div class=\"pull-right text-muted\">" + data[i].createdtime + "</div><div>" +
+                        "<a href=\"" + basePath + "/Aesopsns/user/others/" + data[i].member.name + "\"><strong>" + data[i].member.name + "</strong></a></div>" +
                         "<div class=\"text\">";
                     var weiboComment = data[i].weiboComment;
                     if (weiboComment != null){
-                        html += "<pre><code><p>引用“<a href='"+basePath+"/u/"+weiboComment.member.id+"'>"+weiboComment.member.name+"</a>”的评论</p>"+weiboComment.content+"</code></pre>";
+                        html += "<pre><code><p>引用“<a href='"+basePath+"/Aesopsns/user/others/"+weiboComment.member.name+"'>"+weiboComment.member.name+"</a>”的评论</p>"+weiboComment.content+"</code></pre>";
                     }
                     html += data[i].content + "<div class='pull-right'><a href='javascript:weibo.commentReply("+data[i].id+")'>回复</a></div></div>" +
-                        "<form class=\"form-horizontal jeesns_form\" action=\""+basePath+"/weibo/comment/"+weiboId+"\" method=\"post\" id='comment-form-"+data[i].id+"' style='display: none;'>" +
+                        "<form class=\"form-horizontal jeesns_form\" action=\""+basePath+"/Aesopsns/weibo/comment/"+weiboId+"\" method=\"post\" id='comment-form-"+data[i].id+"' style='display: none;'>" +
                         "<div class=\"form-group\"><input type='hidden' name='weiboCommentId' value='"+data[i].id+"'/>" +
                         "<textarea name=\"content\" class=\"form-control weibo-comment-content\" rows=\"2\" id=\""+data[i].id+"\" maxlength=\""+weiboPostMaxcontent+"\"></textarea></div>" +
                         "<div class=\"form-group comment-user\"><span class=\"mg-r-5 weibo-words-"+data[i].id+"\">0/"+weiboPostMaxcontent+"</span>" +
                         "<input type=\"submit\" value=\"回复\" class=\"pull-right btn btn-primary mg-t-10 jeesns-submit\"></div></form></div></div>";
                 }
-                pageNo = json.page.pageNo;
-                if (json.page.totalPage <= pageNo) {
+                //pageNo = json.page.pageNo;
+                //if (json.page.totalPage <= pageNo) {
+                //分页就先不弄了
                     $("#moreComment").hide();
-                } else {
-                    $("#moreComment").show();
-                }
+                //} else {
+                   // $("#moreComment").show();
+                //}
                 $("#commentList").append(html);
-                $('.jeesns_form').unbind();
-                jeesns.submitForm();
+                //$('.jeesns_form').unbind();
+                //jeesns.submitForm();
                 $(".weibo-comment-content").bind('input propertychange focus blur', function () {
                     var $this = $(this);
                     var _val = $this.val();

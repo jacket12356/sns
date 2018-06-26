@@ -47,28 +47,28 @@ var jeesns = {
                 jeesnsDialog.close(index);
                 $(":submit").removeAttr("disabled");
                 // form.find('.jeesns-submit').removeAttr("disabled");
-                jeesnsDialog.tips('请求失败 ！');
+                //jeesnsDialog.tips('请求失败 ！');
             },
             success:function(res){
                 jeesnsDialog.close(index);
                 if(res.code==0){
                     $(":submit").removeAttr("disabled");
-                    jeesnsDialog.successTips(res.message);
+                    jeesnsDialog.successTips(res.msg);
                 }else if(res.code==1){
-                    localStorage.setItem("message",res.message);
+                    localStorage.setItem("message",res.msg);
                     window.location.href=window.location.href;
                 }else if(res.code==2){
-                    localStorage.setItem("message",res.message);
+                    localStorage.setItem("message",res.msg);
                     window.location.href=res.url;
                 }else if(res.code==3){
-                    localStorage.setItem("message",res.message);
+                    localStorage.setItem("message",res.msg);
                     window.parent.location.reload();
                 }else if(res.code==-1){
                     $(":submit").removeAttr("disabled");
-                    jeesnsDialog.errorTips(res.message);
+                    jeesnsDialog.errorTips(res.msg);
                 }else{
                     $(":submit").removeAttr("disabled");
-                    jeesnsDialog.tips(res.message);
+                    jeesnsDialog.tips(res.msg);
                 }
                 // $(":submit").removeAttr("disabled");
                 // form.find('.jeesns-submit').removeAttr("disabled");
@@ -186,27 +186,29 @@ var jeesns = {
             beforeSend: function(){
                 index = jeesnsDialog.loading();
             },
-            error: function(){
+           /* error: function(){
                 jeesnsDialog.close(index);
                 jeesnsDialog.errorTips("请求失败")
-            },
+            },*/
             success:function(res){
                 jeesnsDialog.close(index);
                 if(res.code == 0){
-                    jeesnsDialog.successTips(res.message);
+                    jeesnsDialog.successTips(res.msg);
                 }else if(res.code == -1){
-                    jeesnsDialog.errorTips(res.message)
+                    jeesnsDialog.errorTips(res.msg)
                 }else if(res.code==1){
-                    localStorage.setItem("message",res.message);
+                    localStorage.setItem("message",res.msg);
                     window.location.href=window.location.href;
                 }else if(res.code==2){
-                    localStorage.setItem("message",res.message);
+                    localStorage.setItem("message",res.msg);
                     window.location.href=res.url;
                 }else if(res.code==3){
-                    localStorage.setItem("message",res.message);
+                    localStorage.setItem("message",res.msg);
                     parent.window.location.href=parent.window.location.href; parent.window.location.href=parent.window.location.href;
+                }else if(res.code==4){
+                	window.location.href=res.url;
                 }else{
-                    jeesnsDialog.tips(res.message);
+                    jeesnsDialog.tips(res.msg);
                 }
             }
         });

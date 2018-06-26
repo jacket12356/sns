@@ -78,12 +78,12 @@
     var getDataJson = function(opt,_this) {
         if(jsonData == null || jsonData == undefined || jsonData == ""){
             $.ajax({
-                url: basePath + '/emoji/emojiJsonData.json',
+                url: basePath + '/Aesopsns/weibo/emoji/emojiJsonData.json',
                 type: 'get',
                 dataType: 'json',
                 cache:true,
                 success: function(data) {
-                    var dataJson = eval('(' + data + ')');
+                    var dataJson = eval(data);
                     jsonData = dataJson.data;
                     emojiPath = dataJson.path;
                     var options = $.extend({}, defaults, opt || {});

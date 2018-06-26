@@ -1,58 +1,33 @@
-﻿
-<!DOCTYPE html>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JEESNS - 又一个JEESNS社区 - Powered By JEESNS</title>
-    <meta name="keywords" content="jeesns,sns,java"/>
-    <meta name="description" content="JEESNS是一款基于JAVA企业级平台研发的社交管理系统，依托企业级JAVA的高效、安全、稳定等优势，开创国内JAVA版开源SNS先河。"/>
-    <meta name="author" content="JEESNS"/>
-    <link rel="shortcut icon" href="favicon.ico">
-    <link href="res/common/css/zui.min.css" rel="stylesheet">
-    <link href="res/front/css/app.css" rel="stylesheet">
+    <title>AESOPSNS - 又一个AESOPSNS社区 - Powered By AESOPSNS</title>
+    <meta name="keywords" content="AESOPSNS,sns,java"/>
+    <meta name="description" content="AESOPSNS是一款基于JAVA企业级平台研发的社交管理系统，依托企业级JAVA的高效、安全、稳定等优势，开创国内JAVA版开源SNS先河。"/>
+    <meta name="author" content="AESOPSNS"/>
+    <link rel="shortcut icon" href="/Aesopsns/favicon.ico">
+    <link href="/Aesopsns/res/common/css/zui.min.css" rel="stylesheet">
+    <link href="/Aesopsns/res/front/css/app.css" rel="stylesheet">
     <!--[if lt IE 9]>
-    <script src="res/common/js/html5shiv.min.js"></script>
-    <script src="res/common/js/respond.min.js"></script>
+    <script src="/Aesopsns/res/common/js/html5shiv.min.js"></script>
+    <script src="/Aesopsns/res/common/js/respond.min.js"></script>
     <![endif]-->
-    <script src="res/common/js/jquery-2.1.1.min.js"></script>
-    <script src="res/common/js/zui.min.js"></script>
-    <script src="res/plugins/layer/layer.js"></script>
-    <script src="res/common/js/jquery.form.js"></script>
-    <script src="res/common/js/jeesns.js"></script>
-    <script src="res/common/js/extendPagination.js"></script>
+    <script src="/Aesopsns/res/common/js/jquery-2.1.1.min.js"></script>
+    <script src="/Aesopsns/res/common/js/zui.min.js"></script>
+    <script src="/Aesopsns/res/plugins/layer/layer.js"></script>
+    <script src="/Aesopsns/res/common/js/jquery.form.js"></script>
+    <script src="/Aesopsns/res/common/js/jeesns.js"></script>
+    <script src="/Aesopsns/res/common/js/extendPagination.js"></script>
 </head>
 <body class="gray-bg">
-<nav class="navbar navbar-inverse">
-    <div class="container">
-        <div class="navbar-header m-navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">JEESNS</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand jeesns-logo" href="/"><img src="/upload/images/20170309/34973079-9203-4268-8f79-9d0d85f6b126.png" height="50px"/></a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="/">首页</a></li>
-                <li><a href="/article/list">文章</a></li>
-                <li><a href="/weibo/list">微博</a></li>
-                <li><a href="/group/">群组</a></li>
-                <li><a href="/action/list">动态</a></li>
-                <li><a href="/picture/">图库</a></li>
-            </ul>
-            <ul class="nav navbar-top-links navbar-right">
-                <div class="nav navbar-nav navbar-nav-right">
-                    <li><a href="/member/login">登录</a></li>
-                    <li><a href="/member/register">注册</a></li>
-                </div>
-            </ul>
-        </div>
-    </div>
-</nav><div class="container">
+<!-- 静态引用header -->
+<%@ include file="/WEB-INF/webpages/front/jspf/header.jspf"%>
+
+<div class="container">
     <div id="banner" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#banner" data-slide-to="0" class="active"></li>
@@ -656,10 +631,10 @@
                     </div>
                     <div class="panel-body friend-link">
                         <ul>
-                            <li><a href="http://www.czcto.com" target="_blank">CZCTO</a></li>
-                            <li><a href="http://www.vwangluo.com" target="_blank">微网络</a></li>
-                            <li><a href="http://www.lxinet.com" target="_blank">凌夕网络</a></li>
-                            <li><a href="http://www.919dns.com" target="_blank">919数据中心</a></li>
+                            <li><a href="http://www.czcto.com" target="_blank">ACFUN</a></li>
+                            <li><a href="http://www.vwangluo.com" target="_blank">虎嗅</a></li>
+                            <li><a href="http://www.lxinet.com" target="_blank">游民星空</a></li>
+                            <li><a href="http://www.919dns.com" target="_blank">Github</a></li>
                         </ul>
                     </div>
                 </div>
@@ -667,21 +642,9 @@
         </div>
     </div>
 </div>
-<div class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="text-center">
-                JEESNS
-                </div>
-                <div class="text-center">
-                    <strong>Powered By <a href="http://www.jeesns.cn" target="_blank">JEESNS</a> Copyright © 2012 - 2017. 闽ICP备12013573号</strong>
-                    <script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "https://hm.baidu.com/hm.js?6e47fd0326365727a8e2ed62d5935c88";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script>
-                </div>
-            </div>
-        </div>
-    </div>
-</div><script type="text/javascript">
+<!-- 静态引用footer -->
+		<%@ include file="/WEB-INF/webpages/front/jspf/footer.jspf"%>
+		<script type="text/javascript">
     $(function () {
         $(".pagination").jeesns_page("jeesnsPageForm");
     });

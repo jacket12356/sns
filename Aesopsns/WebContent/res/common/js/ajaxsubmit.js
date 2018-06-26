@@ -22,9 +22,9 @@ function getOptions(form){
             jeeLoading();
             form.find('.ajax_btn').attr("disabled","true");
         },
-        error:function(){
+        /*error:function(){
             jeeTips('请求失败 ！');
-        },
+        },*/
         success:function(res){
             if(res.code==1){
                 jeeSuccessTips(res.msg)
@@ -92,9 +92,9 @@ function jeeAjax(myurl,mytype,mydata){
         beforeSend: function(){ // 提交之前
             jeeLoading()
         },
-        error: function(){      // 出错
+        /*error: function(){      // 出错
             jeeTips('请求失败 ！');
-        },
+        },*/
         success:function(res){  // 成功
             jeeTips(res.msg);
             if(res.type=='refresh'){

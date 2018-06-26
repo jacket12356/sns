@@ -1,6 +1,6 @@
 "use strict";
 $(function () {
-	var basePath = window.basePath;
+	var basePath = "";
 	if (basePath == undefined){
 		console.log("请先在引用emoji.js文件请设置系统部署根目录变量名称basePath，如：var basePath = \"${basePath}\";")
 	}
@@ -383,7 +383,7 @@ $(function () {
 				text += variation.wrapper+variation.actual+variation.wrapper;
 			}
 		}
-        return '<img title="'+text+'" src="'+basePath+'/res/plugins/emoji/emoji/'+img.full_idx+'.png" data-name="'+text+'" data-src="'+basePath+'/res/plugins/emoji/emoji/'+img.full_idx+'.png" width="16px" height="16px">';
+        return '<img title="'+text+'" src="'+basePath+'/Aesopsns/res/plugins/emoji/emoji/'+img.full_idx+'.png" data-name="'+text+'" data-src="'+basePath+'/Aesopsns/res/plugins/emoji/emoji/'+img.full_idx+'.png" width="16px" height="16px">';
 	};
 
 	// Finds the best image to display, taking into account image set precedence and obsoletes

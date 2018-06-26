@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class Index {
-	//此为网站入口
-	@RequestMapping("index")
+	//鍏ュ彛
+	@RequestMapping("/index")
 	public String index() {
 		return "front/index";
 	}
